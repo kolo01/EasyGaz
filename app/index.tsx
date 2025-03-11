@@ -3,7 +3,7 @@ import { Image, Text, View } from "react-native";
 
 export default function Index() {
   setTimeout(() => {
-    router.push("/login/" as RelativePathString); 
+    router.push("/slide/" as RelativePathString); 
   }, 2000); 
 
   return (

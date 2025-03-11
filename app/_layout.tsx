@@ -35,6 +35,10 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="slide/index" options={{ headerShown: false }} />
+        <Stack.Screen name="slide/slide2" options={{ headerShown: false }} />
+        <Stack.Screen name="slide/slide3" options={{ headerShown: false }} />
+        <Stack.Screen name="slide/slide4" options={{ headerShown: false }} />
         <Stack.Screen name="login" options={{ headerShown: false }} />
         <Stack.Screen name="Home" options={{ headerShown: false }} />
         <Stack.Screen name="register" options={{ headerShown: false }} />
