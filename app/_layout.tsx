@@ -40,8 +40,13 @@ export default function RootLayout() {
         <Stack.Screen name="slide/slide3" options={{ headerShown: false }} />
         <Stack.Screen name="slide/slide4" options={{ headerShown: false }} />
         <Stack.Screen name="login" options={{ headerShown: false }} />
-        <Stack.Screen name="Home" options={{ headerShown: false }} />
         <Stack.Screen name="register" options={{ headerShown: false }} />
+        <Stack.Screen name="logged/Home" options={{ headerShown: false }} />
+        <Stack.Screen name="logged/near" options={{ headerShown: false }} />
+        <Stack.Screen name="logged/selected" options={{ headerShown: false }} />
+        <Stack.Screen name="logged/details" options={{ headerShown: false }} />
+        <Stack.Screen name="logged/paiement" options={{ headerShown: false }} />
+        <Stack.Screen name="logged/confirmation" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />

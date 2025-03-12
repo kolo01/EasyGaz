@@ -36,7 +36,7 @@ export default function LoginScreen() {
 
       {/* Bouton de connexion */}
       <Button
-        onPress={() => alert("En cours de contruction")}
+        onPress={() => router.push("/logged/Home")}
         style={styles.login}
       >
         Se connecter

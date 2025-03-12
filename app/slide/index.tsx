@@ -1,4 +1,5 @@
 import { Entypo } from "@expo/vector-icons";
+import { router } from "expo-router";
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Button } from "tamagui";
@@ -22,7 +23,9 @@ const DreamJobScreen = () => {
         </View>
         {/* Insertion des bouttons ignorer, suivant et des dots */}
         <View style={styles.optionMain}>
-            <Button color={"lightgray"} size={18} fontWeight={400} >Ignorer</Button>
+        <TouchableOpacity onPress={()=>router.push("/login")}>
+            <Button  color={"lightgray"} size={18} fontWeight={400} >Ignorer</Button>
+            </TouchableOpacity>
             <View style={styles.dotted}>
             <Entypo name="dot-single" size={30} color="#1D9A94" />
             <Entypo name="dot-single" size={30} color="lightgray" />
@@ -30,7 +33,9 @@ const DreamJobScreen = () => {
             <Entypo name="dot-single" size={30} color="lightgray" />
             
             </View>
+            <TouchableOpacity  onPress={()=>router.push("/slide/slide2")}>
             <Button color={"#2D2B2E"} size={18} fontWeight={400}>Suivant</Button>
+            </TouchableOpacity>
         </View>
 
       </View>
@@ -50,6 +55,8 @@ const styles = StyleSheet.create({
   images: {
     width: 327,
     height: 319,
+    alignContent:"center",
+    resizeMode:"contain"
   },
   illustrationMain:{
     justifyContent:"space-between"
