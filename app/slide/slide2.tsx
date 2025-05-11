@@ -13,22 +13,22 @@ const DreamJobScreen = () => {
         <View style={styles.imageContainer}>
           <Image
             style={styles.images}
-            source={require("@/assets/imageFigma/slide2.png")}
+            source={require("../../assets/imageFigma/slide2.png")}
           />
         </View>
         {/* Insertion du texte du texte sous l'image (Generer un beau texte avec chatgpt ou autre IA qui puisse donner un beau texte) */}
         <View style={styles.illustrationMain}>
-          <Text style={styles.textEnGrand}>Discover Your Dream Job here</Text>
-          <Text style={styles.textEnLegende}>Explore all the existing job roles based on your interest and study major</Text>
+          <Text style={styles.textEnGrand}>Commander des bouteilles de gaz en quelques clics.  </Text>
+          <Text style={styles.textEnLegende}></Text>
         </View>
         {/* Insertion des bouttons ignorer, suivant et des dots */}
         <View style={styles.optionMain}>
-            <TouchableOpacity onPress={()=>router.push("/login")}>
-            <Button   color={"lightgray"} size={18} fontWeight={400} >Ignorer</Button>
+            <TouchableOpacity onPress={()=>router.back()}>
+            <Button   color={"lightgray"} size={18} fontWeight={400} >Retour</Button>
             </TouchableOpacity>
             <View style={styles.dotted}>
+            <Entypo name="dot-single" size={30} color="lightgray"  />
             <Entypo name="dot-single" size={30} color="#1D9A94" />
-            <Entypo name="dot-single" size={30} color="lightgray" />
             <Entypo name="dot-single" size={30} color="lightgray" />
             <Entypo name="dot-single" size={30} color="lightgray" />
             
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
   main: {
     backgroundColor: "white",
     flex: 1,
+  
   },
   imageContainer: {
     alignItems: "center",

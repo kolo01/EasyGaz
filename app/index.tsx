@@ -16,7 +16,7 @@ export default function Index() {
       }}
     >
       
-      <Image style={{resizeMode:"contain", width:243,height:243}} source={require("@/assets/imageFigma/logo.png")} />
+      <Image style={{resizeMode:"contain", width:243,height:243}} source={require("../assets/imageFigma/logo.png")} />
       
     </View>
   );

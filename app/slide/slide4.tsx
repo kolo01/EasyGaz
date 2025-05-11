@@ -19,15 +19,14 @@ const DreamJobScreen = () => {
         <View style={styles.imageContainer}>
           <Image
             style={styles.images}
-            source={require("@/assets/imageFigma/slide4.png")}
+            source={require("../../assets/imageFigma/slide4.png")}
           />
         </View>
         {/* Insertion du texte du texte sous l'image (Generer un beau texte avec chatgpt ou autre IA qui puisse donner un beau texte) */}
         <View style={styles.illustrationMain}>
-          <Text style={styles.textEnGrand}>Discover Your Dream Job here</Text>
+          <Text style={styles.textEnGrand}>Un service premium rien que pour vous</Text>
           <Text style={styles.textEnLegende}>
-            Explore all the existing job roles based on your interest and study
-            major
+          Une livraison à domicile, gagner en temps et en énergie.
           </Text>
         </View>
         {/* Insertion des bouttons ignorer, suivant et des dots */}
@@ -43,10 +42,10 @@ const DreamJobScreen = () => {
             </Button>
           </TouchableOpacity>
           <View style={styles.dotted}>
-            <Entypo name="dot-single" size={30} color="#1D9A94" />
             <Entypo name="dot-single" size={30} color="lightgray" />
             <Entypo name="dot-single" size={30} color="lightgray" />
             <Entypo name="dot-single" size={30} color="lightgray" />
+            <Entypo name="dot-single" size={30}  color="#1D9A94"/>
           </View>
           <TouchableOpacity onPress={() => router.push("/login")}>
             <Button
@@ -68,10 +67,11 @@ const styles = StyleSheet.create({
   main: {
     backgroundColor: "white",
     flex: 1,
+    
   },
   imageContainer: {
     alignItems: "center",
-    marginTop: 160,
+    marginTop: 140,
   },
   images: {
     width: 327,
@@ -108,8 +108,9 @@ const styles = StyleSheet.create({
   dotted: {
     display: "flex",
     flexDirection: "row",
-    // justifyContent:"space-around"
+  
     rowGap: 5,
+    
   },
 });
 

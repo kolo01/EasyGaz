@@ -1,10 +1,16 @@
+import { getProductList } from "@/api/getProduct";
+import { saveProduct } from "@/api/saveDataModule";
 import { Entypo } from "@expo/vector-icons";
 import { router } from "expo-router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Button } from "tamagui";
 
 const DreamJobScreen = () => {
+  const [data,setData] = useState<any>()
+  useEffect(()=>{
+    //  getProductList('test')
+  },[])
   return (
     <View style={styles.main}>
       {/* View mis la pour ajout du background plus tard (flemme de faire un design compliquer avec les formes) */}
@@ -13,13 +19,14 @@ const DreamJobScreen = () => {
         <View style={styles.imageContainer}>
           <Image
             style={styles.images}
-            source={require("@/assets/imageFigma/index.png")}
+            source={require("../../assets/imageFigma/index.png")}
           />
         </View>
+        
         {/* Insertion du texte du texte sous l'image (Generer un beau texte avec chatgpt ou autre IA qui puisse donner un beau texte) */}
         <View style={styles.illustrationMain}>
-          <Text style={styles.textEnGrand}>Discover Your Dream Job here</Text>
-          <Text style={styles.textEnLegende}>Explore all the existing job roles based on your interest and study major</Text>
+          <Text style={styles.textEnGrand}>Découvrir le dépôt de gaz le plus proche</Text>
+          <Text style={styles.textEnLegende}>Avec juste quelques clics, découvre tous les dépôts proches de chez toi.</Text>
         </View>
         {/* Insertion des bouttons ignorer, suivant et des dots */}
         <View style={styles.optionMain}>
@@ -47,6 +54,7 @@ const styles = StyleSheet.create({
   main: {
     backgroundColor: "white",
     flex: 1,
+    
   },
   imageContainer: {
     alignItems: "center",

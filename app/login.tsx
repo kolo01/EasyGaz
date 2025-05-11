@@ -1,12 +1,61 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Input, Text, View, XStack, Image } from "tamagui";
 import { FontAwesome } from "@expo/vector-icons";
-import { StyleSheet, TouchableOpacity } from "react-native";
+import { Alert, StyleSheet, TouchableOpacity } from "react-native";
 import { router } from "expo-router";
 
+import { auth, firestore } from "@/lib/firebase.";
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { doc, getDoc } from "firebase/firestore";
+import { getData, storeData } from "@/lib/mmkv";
+import LoadingDots from "react-native-loading-dots";
+
+
 export default function LoginScreen() {
-  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [Loading, setloading] = useState(false)
+
+  const login = (email: any, password: any) => {
+    setloading(true)
+    signInWithEmailAndPassword(auth, email, password).then(async (res) => {
+
+      if (res.user.emailVerified) {
+        const snapshot = await getDoc(doc(firestore, "users", res.user.uid))
+        if (snapshot.exists()) {
+          console.log(snapshot.data())
+          if (snapshot.data().role == "seller") {
+            await storeData("client_id", JSON.stringify(res.user.uid))
+            await storeData("user", JSON.stringify(snapshot.data()))
+            await storeData("type", "seller")
+            router.push("/seller")
+          } else {
+            await storeData("client_id", JSON.stringify(res.user.uid))
+            await storeData("user", JSON.stringify(snapshot.data()))
+            await storeData("type", snapshot.data().role)
+            router.push("/logged")
+
+          }
+        } else {
+
+          console.log("No such document!");
+          setloading(false)
+        }
+
+      } else {
+        setloading(false)
+        Alert.alert("Email non verifié", "Veuillez verifier votre Email svp!!")
+      }
+
+    }).catch((err) => {
+      setloading(false)
+      Alert.alert('Erreur inattendu', "impossible de se connecter, veuillez reessayer")
+    })
+  }
+
+
+
+
 
   return (
     <View style={styles.container}>
@@ -16,15 +65,16 @@ export default function LoginScreen() {
       {/* Formulaire */}
       <View style={styles.inputContainer}>
         <Input
-          placeholder="Numéro de téléphone"
+          placeholder="Votre Email"
           style={styles.input}
-          value={phone}
-          onChangeText={setPhone}
+          value={email}
+          onChangeText={setEmail}
         />
         <Input
           placeholder="Mot de passe"
           style={styles.input}
           value={password}
+          secureTextEntry={true}
           onChangeText={setPassword}
         />
         <TouchableOpacity onPress={() => alert("En cours de contruction")}>
@@ -36,16 +86,30 @@ export default function LoginScreen() {
 
       {/* Bouton de connexion */}
       <Button
-        onPress={() => router.push("/logged/Home")}
+        onPress={() => login(email, password)}
+        // onPress={() => router.push("/logged")}
         style={styles.login}
+        color={"white"}
       >
-        Se connecter
+        {Loading ?
+          <LoadingDots size={16} bounceHeight={16} />
+          : <Text color={"white"} fontSize={16} fontWeight={500}>Se connecter</Text>}
       </Button>
 
       {/* Lien créer un compte */}
-      <TouchableOpacity onPress={() => router.push("/register")}>
-        <Text style={styles.normalText2}>Créer un compte</Text>
-      </TouchableOpacity>
+      <Button backgroundColor={"#E4FDFB"}
+
+        borderRadius={10}
+        textAlign="center"
+        width={"80%"}
+
+        marginTop={20}
+        paddingVertical={15}
+        paddingHorizontal={20}
+
+        onPress={() => router.push("/register")}>
+        <Text color={"#626262"} fontWeight={500} fontSize={16} >Créer un compte</Text>
+      </Button>
 
       {/* Connexion avec Google & Apple */}
       <Text style={styles.normalText2}>Ou avec</Text>
@@ -60,6 +124,9 @@ export default function LoginScreen() {
     </View>
   );
 }
+
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -81,7 +148,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: 400,
     color: "black",
-    marginTop: 20,
+    // marginTop: 20,
   },
   normalText3: {
     marginTop: 40,
@@ -113,8 +180,9 @@ const styles = StyleSheet.create({
   },
   login: {
     backgroundColor: "#1D9A94",
-    color: "white",
-    borderRadius: 20,
+    tintColor: "white",
+    color: "#fff",
+    borderRadius: 10,
     textAlign: "center",
     width: "80%",
 
@@ -126,14 +194,15 @@ const styles = StyleSheet.create({
     color: "#1D9A94",
   },
   containerFastLogin: {
-    marginTop: 20,
+    // marginTop: 20,
     gap: 20,
     display: "flex",
     flexDirection: "row",
   },
   fastlogin: {
     backgroundColor: "lightgray",
-    borderRadius: 20,
-    padding: 15,
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20
   },
 });

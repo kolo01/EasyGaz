@@ -1,59 +1,63 @@
-import { AntDesign, Feather, Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Button } from "tamagui";
 
-export default function Details() {
-  const itemsDispo = [
-    {
-      title: "Bouteille 6kg",
-      emplacement: "Rue des jardins",
-      prix: "5000 FCFA",
-      image: "@/assets/imageFigma/bouteille.png",
-    },
-  ];
+export default function Confirmation() {
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <AntDesign name="arrowleft" size={24} color="black" />
-        <Text style={styles.secondaryText}>Détails de la commande</Text>
-      </View>
-
-      {itemsDispo.map((data, index) => (
-        <TouchableOpacity
-          key={index}
-          onPress={() => router.push("/logged/selected")}
+      <Image
+        source={require("../../assets/imageFigma/succesPayment.png")}
+        style={styles.image}
+      />
+      <Text style={styles.bigText}>Commande confirmée !</Text>
+      <Text style={styles.normalText}>
+        Votre commande a été enregistrée avec succès
+      </Text>
+      <View style={styles.greenBox}>
+        <View
+          style={{
+            flexDirection: "row",
+            gap: 10,
+            alignItems: "center",
+            alignContent: "center",
+          }}
         >
-          <View style={styles.Boxed}>
-            <Image
-              source={require("@/assets/imageFigma/bouteille.png")}
-              style={styles.image}
-            />
-            <View>
-              <Text style={styles.secondaryTextBold}>{data.title}</Text>
-              <Text style={styles.secondaryText}>{data.emplacement}</Text>
-              <Text style={styles.coloredText}>{data.prix}</Text>
-            </View>
-            <TouchableOpacity onPress={() => router.push("/logged/details")}>
-              <Button
-                backgroundColor={"#1D9A94"}
-                borderRadius={4}
-                padding={10}
-                color={"white"}
-              >
-                Commander
-              </Button>
-            </TouchableOpacity>
-          </View>
-        </TouchableOpacity>
-      ))}
+          <Image
+            source={require("../../assets/imageFigma/clockPayment.png")}
+            style={styles.imagesTwo}
+            tintColor={"#1D9A94"}
+          />
+          <Text style={styles.normalText}>
+            Livraison estimée: 15-30 minutes
+          </Text>
+        </View>
+        <View>
+          <Text style={styles.normalTextBold}>Détails de la commande</Text>
+          <Text style={styles.smallText}>1x Bouteille 12kg Premium</Text>
+          <Text style={styles.smallText}>Dépôt Cocody Centre</Text>
+          <Text style={styles.normalTextBold}>Méthode de paiement</Text>
+          <Text style={styles.smallText}>Mobile money</Text>
+        </View>
+        <View style={styles.flexed}>
+          <Text style={styles.BoldText}>Total payé</Text>
+          <Text style={styles.boldColor}>10000 FCFA</Text>
+        </View>
+      </View>
+      <TouchableOpacity onPress={()=>{router.push("/logged")}}>
+        <Button
+        onPress={()=>{router.push("/logged")}}
+          style={{
+            backgroundColor: "#1D9A94",
+            color: "#FFF",
+            padding: 10,
+            height: 41,
+            marginTop: 20,
+            width:300
+          }}
+        >
+          <Text style={{ color: "white" }}>Retour a l’accueil</Text>
+        </Button>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -61,60 +65,64 @@ export default function Details() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignContent: "center",
+    alignItems: "center",
     backgroundColor: "white",
     paddingHorizontal: 20,
-    paddingTop: 40,
-  },
-  header: {
-    marginBottom: 10,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-  },
-  PrimaryText: {
-    color: "#626262",
-    fontSize: 18,
-    fontWeight: 600,
-  },
-  secondaryText: {
-    color: "#626262",
-    fontSize: 14,
-    fontWeight: 400,
-  },
-  secondaryTextBold: {
-    color: "#626262",
-    fontSize: 16,
-    fontWeight: 500,
-  },
-  coloredText: {
-    color: "#1D9A94",
-    fontSize: 16,
-    fontWeight: 600,
-  },
-  Boxed: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    //  shadowColor:"black",
-    borderWidth: 1,
-    borderColor: "#FFF",
-    padding: 10,
-    alignItems: "center",
-    borderRadius: 8,
-    shadowColor: "lightgray",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: 1,
-    marginVertical: 10,
-  },
-  refresh: {
-    backgroundColor: "#F6F6F6",
+    paddingTop: 187,
+    gap: 20,
   },
   image: {
-    resizeMode: "contain",
-    width: 80,
-    height: 80,
+    width: 69,
+    height: 69,
+  },
+  bigText: {
+    fontSize: 20,
+    fontWeight: 700,
+    color: "#626262",
+  },
+  normalText: {
+    fontSize: 16,
+    fontWeight: 400,
+    color: "#626262",
+  },
+  greenBox: {
+    backgroundColor: "#F3FFFE",
+    width: 300,
+    padding: 10,
+    gap: 10,
+    alignContent: "center",
+    alignItems: "center",
+  },
+  imagesTwo: {
+    width: 20,
+    height: 20,
+  },
+  normalTextBold: {
+    fontSize: 16,
+    fontWeight: 700,
+    color: "#626262",
+    marginVertical: 10,
+  },
+  smallText: {
+    fontSize: 16,
+    fontWeight: 400,
+    color: "#626262",
+  },
+  boldColor: {
+    fontSize: 16,
+    fontWeight: 600,
+    color: "#1D9A94",
+  },
+  BoldText: {
+    fontSize: 16,
+    fontWeight: 600,
+    color: "#626262",
+  },
+  flexed: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: 285,
+    marginTop: 20,
   },
 });

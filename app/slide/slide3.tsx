@@ -2,41 +2,41 @@ import { Entypo } from "@expo/vector-icons";
 import { router } from "expo-router";
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import { Button } from "tamagui";
+import { Button, XStack } from "tamagui";
 
 const DreamJobScreen = () => {
   return (
     <View style={styles.main}>
       {/* View mis la pour ajout du background plus tard (flemme de faire un design compliquer avec les formes) */}
-      <View style={{ paddingHorizontal: 20, justifyContent:"space-between",flex:1 }}>
+      <View style={{ paddingHorizontal: 20, justifyContent:"space-between", flex:0.98 }}>
         {/* Insertion de l'image du figma */}
         <View style={styles.imageContainer}>
           <Image
             style={styles.images}
-            source={require("@/assets/imageFigma/slide3.png")}
+            source={require("../../assets/imageFigma/slide3.png")}
           />
         </View>
         {/* Insertion du texte du texte sous l'image (Generer un beau texte avec chatgpt ou autre IA qui puisse donner un beau texte) */}
         <View style={styles.illustrationMain}>
-          <Text style={styles.textEnGrand}>Discover Your Dream Job here</Text>
-          <Text style={styles.textEnLegende}>Explore all the existing job roles based on your interest and study major</Text>
+          <Text style={styles.textEnGrand}> suivi en temps réel des livraisons</Text>
+          <Text style={styles.textEnLegende}>Suivez chaque étape de votre livraison en temps réel grâce à une géolocalisation précise.</Text>
         </View>
         {/* Insertion des bouttons ignorer, suivant et des dots */}
-        <View style={styles.optionMain}>
-            <TouchableOpacity onPress={()=>router.push("/login")}>
-            <Button  color={"lightgray"} size={18} fontWeight={400} >Ignorer</Button>
-            </TouchableOpacity>
+        <XStack style={styles.optionMain}>
+            
+            <Button onPress={()=>router.back()} color={"lightgray"} size={18} fontWeight={400} >Retour</Button>
+            
             <View style={styles.dotted}>
-            <Entypo name="dot-single" size={30} color="#1D9A94" />
+            <Entypo name="dot-single" size={30} color="lightgray"/>
             <Entypo name="dot-single" size={30} color="lightgray" />
-            <Entypo name="dot-single" size={30} color="lightgray" />
+            <Entypo name="dot-single" size={30}  color="#1D9A94" />
             <Entypo name="dot-single" size={30} color="lightgray" />
             
             </View>
-            <TouchableOpacity onPress={()=>router.push("/slide/slide4")}>
-            <Button  color={"#2D2B2E"} size={18} fontWeight={400}>Suivant</Button>
-            </TouchableOpacity>
-        </View>
+         
+            <Button onPress={()=>router.push("/slide/slide4")}  color={"#2D2B2E"} size={18} fontWeight={400}>Suivant</Button>
+            
+        </XStack>
 
       </View>
     </View>
@@ -47,10 +47,11 @@ const styles = StyleSheet.create({
   main: {
     backgroundColor: "white",
     flex: 1,
+    
   },
   imageContainer: {
     alignItems: "center",
-    marginTop: 160,
+    marginTop: 140,
   },
   images: {
     width: 327,
@@ -77,14 +78,8 @@ const styles = StyleSheet.create({
     textAlign:"center"
   },
   optionMain:{
-    display:"flex",
-    flexDirection:"row",
     justifyContent:"space-between",
-    // paddingBottom:20,
-    height:50
-
-
-  },dotted:{
+    },dotted:{
     display:"flex",
     flexDirection:"row",
     // justifyContent:"space-around"

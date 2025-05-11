@@ -2,6 +2,7 @@ import { router } from 'expo-router';
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
+import { Button, XStack } from 'tamagui';
 
 const LocationScreen = () => {
   return (
@@ -10,16 +11,16 @@ const LocationScreen = () => {
       <MapView
         style={styles.map}
         initialRegion={{
-          latitude: -5.65, // Exemple de coordonnées
-          longitude: 4.22,
+          latitude: 5.55, // Exemple de coordonnées
+          longitude: -3.90,
           latitudeDelta: 0.01,
           longitudeDelta: 0.01,
         }}
       >
         <Marker
           coordinate={{
-            latitude: -8.65,
-            longitude: 115.22,
+            latitude: 5.55,
+            longitude: -3.90,
           }}
         >
           <View style={styles.marker}>
@@ -29,6 +30,9 @@ const LocationScreen = () => {
       </MapView>
 
       {/* Section inférieure */}
+      
+        <Button  style={styles.button2} onPress={()=>router.push("/logged/near")}><Text style={styles.buttonText}>Voir tout les dépôts à proximité</Text></Button>
+      
       <View style={styles.bottomSection}>
         <TouchableOpacity style={styles.button} onPress={()=>router.push("/logged/near")}>
           <Text style={styles.buttonText}>Enregistrer votre position actuelle</Text>
@@ -81,6 +85,16 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     marginBottom: 10,
+  },
+  button2: {
+    backgroundColor: '#008080',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginBottom: 10,
+    alignContent:"center",
+    marginLeft:"10%",
+    width:"70%"
   },
   buttonText: {
     color: '#fff',

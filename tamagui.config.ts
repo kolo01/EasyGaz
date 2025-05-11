@@ -4,7 +4,7 @@ export const config = createTamagui({
   // act like CSS variables at your root
   tokens: {
     // width="$sm"
-    size: { sm: 8, md: 12, lg: 20, 4:16 },
+    size: { sm: 8, md: 12, lg: 20, 4:16, xl:24 },
     // margin="$-sm"
     space: { '-sm': 8 ,2:14},
     // radius="$none"
